@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,6 +10,11 @@ public class Scenes : MonoBehaviour {
     public int firstLaunchedSceneIndex = -1;
     public int previousSceneIndex = -1;
 
+    public enum SceneNames {
+        TitleScreen = 0,
+        Gameplay = 1
+    }
+    
     private void Awake() {
         _gm = GameManager.Instance;
     }
@@ -18,9 +24,16 @@ public class Scenes : MonoBehaviour {
     }
     
     public void LoadPreviousScene() {
-        int prevSceneIndex = previousSceneIndex;
+        LoadScene(previousSceneIndex);
+    }
+
+    public void LoadScene(SceneNames sceneName) {
+        LoadScene((int)sceneName);
+    }
+
+    public void LoadScene(int sceneIndex) {
         PrepareLoadNewScene();
-        SceneManager.LoadScene(prevSceneIndex);
+        SceneManager.LoadScene(sceneIndex);
     }
 
     public bool IsFirstLaunched() {
@@ -29,5 +42,9 @@ public class Scenes : MonoBehaviour {
     
     public bool IsFirstLaunched(int sceneIndex) {
         return firstLaunchedSceneIndex == sceneIndex;
+    }
+
+    public void LoadGameplayScene() {
+        LoadScene(SceneNames.Gameplay);
     }
 }
