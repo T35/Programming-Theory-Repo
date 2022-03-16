@@ -1,21 +1,33 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UI.Gameplay;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
 public class Gameplay : MonoBehaviour {
     private GameManager gm;
-    
+
+    public static Gameplay Instance;
+
     [SerializeField] private TargetBlue targetBlue;
     [SerializeField] private TargetGreen targetGreen;
     [SerializeField] private TargetRed targetRed;
     [SerializeField] private TargetYellow targetYellow;
     [SerializeField] private Cursor cursor;
+    
+    [SerializeField] public TopLeftGroup UITopLeft;
 
     private readonly List<Target> targets = new List<Target>();
 
     private void Awake() {
+        if (Instance == null) {
+            Instance = this;
+        }
+        else {
+            Destroy(gameObject);
+        }
+        
         gm = GameManager.Instance;
 
         if (gm.scenes.IsFirstLaunched()) {
@@ -29,7 +41,9 @@ public class Gameplay : MonoBehaviour {
     }
 
     private void Start() {
-        cursor.GetComponent<SpriteRenderer>().color = targets[Random.Range(0, targets.Count)].GetRealColor();
+        Target tmpTarget = targets[Random.Range(0, targets.Count)];
+        cursor.GetComponent<SpriteRenderer>().color = tmpTarget.GetRealColor();
+        cursor.eColor = tmpTarget.eColor;
     }
 
     private void DefaultDataForTest() {

@@ -3,5 +3,5 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class TargetRed : Target {
-    public override EColor color => EColor.Red;
+    public override EColor eColor => EColor.Red;
 }
