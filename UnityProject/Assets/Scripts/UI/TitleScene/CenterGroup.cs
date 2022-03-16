@@ -17,6 +17,16 @@ namespace UI.TitleScene {
         }
 
         public void StartButton() {
+            if (GameManager.Instance == null) {
+                Debug.Log("111");
+                return;
+            }
+
+            if (gm == null) {
+                Debug.Log("222");
+                return;
+            }
+            
             if (!gm.data.SetPlayerNickname(nicknameInputField.text)) {
                 Debug.LogError("The Nickname must be 3 and 15 characters long. And start with a letter.");
                 return;
