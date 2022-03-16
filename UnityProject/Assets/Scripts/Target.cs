@@ -7,8 +7,8 @@ using UnityEngine;
 /// // INHERITANCE
 /// </summary>
 public abstract class Target : MonoBehaviour {
-    private SpriteRenderer sp;
-    private BoxCollider2D boxCollider;
+    protected SpriteRenderer sr;
+    protected BoxCollider2D boxCollider;
 
     public enum EColor {
         Blue,
@@ -22,13 +22,16 @@ public abstract class Target : MonoBehaviour {
     /// </summary>
     public abstract EColor eColor { get; }
 
+    protected bool isChosen = false;
+    protected bool isRightChoice = false;
+
     private void Awake() {
-        sp = GetComponent<SpriteRenderer>();
+        sr = GetComponent<SpriteRenderer>();
         boxCollider = GetComponent<BoxCollider2D>();
     }
 
     public Color GetRealColor() {
-        return sp.color;
+        return sr.color;
     }
 
     protected void OnTriggerEnter2D(Collider2D other) {
@@ -50,22 +53,40 @@ public abstract class Target : MonoBehaviour {
 
     /// <summary>
     /// // ABSTRACTION
+    /// // POLYMORPHISM
     /// </summary>
     public virtual void ChosenRightColor() {
+        isChosen = true;
+        isRightChoice = true;
         Gameplay.Instance.UITopLeft.indicator.IndicateRight();
     }
 
     /// <summary>
     /// // ABSTRACTION
     /// </summary>
-    public virtual void ChosenWrongColor() {
+    public void ChosenWrongColor() {
+        isChosen = true;
+        isRightChoice = false;
         Gameplay.Instance.UITopLeft.indicator.IndicateWrong();
+        
+        Color newColor = sr.color;
+        newColor.a = 0.5f;
+        sr.color = newColor;
     }
 
     /// <summary>
     /// // ABSTRACTION
+    /// // POLYMORPHISM
     /// </summary>
     public virtual void ChoiceBack() {
+        if (!isRightChoice) {
+            Color newColor = sr.color;
+            newColor.a = 1f;
+            sr.color = newColor;
+        }
+        
+        isChosen = false;
+        isRightChoice = false;
         Gameplay.Instance.UITopLeft.indicator.IndicateNot();
     }
 }
