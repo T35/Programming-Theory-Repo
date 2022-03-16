@@ -4,12 +4,15 @@ using System.Text.RegularExpressions;
 using UnityEngine;
 
 public class Data : MonoBehaviour {
-    private GameManager _gm;
+    private GameManager gm;
 
+    /// <summary>
+    /// // ENCAPSULATION
+    /// </summary>
     public string playerNickname { get; private set; }
 
     private void Awake() {
-        _gm = GameManager.Instance;
+        gm = GameManager.Instance;
     }
 
     public bool SetPlayerNickname(string newPlayerNickname) {
@@ -17,7 +20,7 @@ public class Data : MonoBehaviour {
             return false;
         }
 
-        _gm.data.playerNickname = newPlayerNickname;
+        playerNickname = newPlayerNickname;
         return true;
     }
 }
