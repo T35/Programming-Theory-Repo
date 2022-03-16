@@ -6,8 +6,6 @@ using UnityEngine;
 using Random = UnityEngine.Random;
 
 public class Gameplay : MonoBehaviour {
-    private GameManager gm;
-
     public static Gameplay Instance;
 
     [SerializeField] private TargetBlue targetBlue;
@@ -27,10 +25,8 @@ public class Gameplay : MonoBehaviour {
         else {
             Destroy(gameObject);
         }
-        
-        gm = GameManager.Instance;
 
-        if (gm.scenes.IsFirstLaunched()) {
+        if (GameManager.Instance.scenes.IsFirstLaunched()) {
             DefaultDataForTest();
         }
         
@@ -47,6 +43,6 @@ public class Gameplay : MonoBehaviour {
     }
 
     private void DefaultDataForTest() {
-        gm.data.SetPlayerNickname("TestPlayer");
+        GameManager.Instance.data.SetPlayerNickname("TestPlayer");
     }
 }

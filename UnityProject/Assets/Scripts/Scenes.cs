@@ -5,8 +5,6 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class Scenes : MonoBehaviour {
-    private GameManager gm;
-    
     public int firstLaunchedSceneIndex = -1;
     public int previousSceneIndex = -1;
 
@@ -16,7 +14,6 @@ public class Scenes : MonoBehaviour {
     }
     
     private void Awake() {
-        gm = GameManager.Instance;
         firstLaunchedSceneIndex = SceneManager.GetActiveScene().buildIndex;
     }
     

@@ -9,7 +9,7 @@ namespace UI.Gameplay {
         [SerializeField] private TMP_Text playerNickname;
 
         private void Start() {
-            playerNickname.text = gm.data.playerNickname;
+            playerNickname.text = GameManager.Instance.data.playerNickname;
         }
     }
 }

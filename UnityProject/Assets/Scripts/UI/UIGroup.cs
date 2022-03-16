@@ -6,12 +6,9 @@ using UnityEngine;
 
 namespace UI {
     public class UIGroup : MonoBehaviour {
-        protected GameManager gm;
-
         public bool IsActive { get; private set; }
 
-        private void Awake() {
-            gm = GameManager.Instance;
+        protected void Awake() {
             IsActive = gameObject.activeSelf;
         }
 
