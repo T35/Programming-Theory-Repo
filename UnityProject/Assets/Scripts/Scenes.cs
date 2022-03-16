@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class Scenes : MonoBehaviour {
-    private GameManager _gm;
+    private GameManager gm;
     
     public int firstLaunchedSceneIndex = -1;
     public int previousSceneIndex = -1;
@@ -16,7 +16,8 @@ public class Scenes : MonoBehaviour {
     }
     
     private void Awake() {
-        _gm = GameManager.Instance;
+        gm = GameManager.Instance;
+        firstLaunchedSceneIndex = SceneManager.GetActiveScene().buildIndex;
     }
     
     private void PrepareLoadNewScene() {
@@ -24,6 +25,10 @@ public class Scenes : MonoBehaviour {
     }
     
     public void LoadPreviousScene() {
+        if (previousSceneIndex < 0) {
+            Debug.LogError("No previous scene!");
+            return;
+        }
         LoadScene(previousSceneIndex);
     }
 

@@ -755,8 +755,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: UITitleScene, Assembly-CSharp
+      - m_Target: {fileID: 1984254426}
+        m_TargetAssemblyTypeName: UI.TitleScene.CenterGroup, Assembly-CSharp
         m_MethodName: StartButton
         m_Mode: 1
         m_Arguments:
@@ -1323,7 +1323,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 311775b832682a9438b3bdde9bcc1c25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  uiObject: {fileID: 1984254424}
   nicknameInputField: {fileID: 1628990997}
 --- !u!1 &2027190283
 GameObject:
